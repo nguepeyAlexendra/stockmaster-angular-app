@@ -18,6 +18,17 @@ export class AuthService {
       tap((res: any) => {
         localStorage.setItem('access_token',  res.access);
         localStorage.setItem('refresh_token', res.refresh);
+        
+        // --- CORRECTION ICI ---
+        // On force le rôle admin pour le superuser afin de débloquer l'interface
+        if (credentials.username === 'Alexandra' || credentials.username === 'admin') {
+          this.saveUserRole('admin');
+        } else if (res.user && res.user.role) {
+          this.saveUserRole(res.user.role);
+        } else {
+          this.saveUserRole('utilisateur');
+        }
+        // ----------------------
       })
     );
   }
@@ -25,8 +36,11 @@ export class AuthService {
   register(data: any): Observable<any> {
     return this.http.post(`${this.apiUrl}/auth/register/`, data).pipe(
       tap((res: any) => {
-        localStorage.setItem('access_token',  res.tokens.access);
-        localStorage.setItem('refresh_token', res.tokens.refresh);
+        localStorage.setItem('access_token',  res.tokens ? res.tokens.access : res.access);
+        localStorage.setItem('refresh_token', res.tokens ? res.tokens.refresh : res.refresh);
+        if (res.user && res.user.role) {
+          this.saveUserRole(res.user.role);
+        }
       })
     );
   }
