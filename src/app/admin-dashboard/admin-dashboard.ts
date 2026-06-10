@@ -51,7 +51,7 @@ export class AdminDashboard implements OnInit, AfterViewInit {
 
   private caChart  : Chart | null = null;
   private catChart : Chart | null = null;
-  private apiUrl = 'environment.apiUrl;';
+  private apiUrl = environment.apiUrl;;
 
   constructor(private router: Router, private http: HttpClient) {}
 

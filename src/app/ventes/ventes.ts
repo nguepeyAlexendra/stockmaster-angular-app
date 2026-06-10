@@ -26,7 +26,7 @@ export class VentesComponent implements OnInit {
   searchTerm     = '';
   isAdmin        = false;
   isDark         = false;
-  apiUrl         = 'environment.apiUrl;';
+  apiUrl = environment.apiUrl;
   venteForm      : FormGroup;
 
   constructor(

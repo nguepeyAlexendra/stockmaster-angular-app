@@ -22,7 +22,7 @@ export class CategoriesComponent implements OnInit {
   editingId      : number | null = null;
   errorMessage   = '';
   successMessage = '';
-  apiUrl         = 'environment.apiUrl;';
+  apiUrl = environment.apiUrl;
   categorieForm  : FormGroup;
 
   emojis = [

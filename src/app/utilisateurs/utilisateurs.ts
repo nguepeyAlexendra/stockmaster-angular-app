@@ -21,7 +21,7 @@ export class UtilisateursComponent implements OnInit {
   isCreating     = false; 
   successMessage = '';
   errorMessage   = '';
-  apiUrl         = 'environment.apiUrl;';
+ apiUrl = environment.apiUrl; // ✅ BON - sans guillemets !
 
   newUser = { username: '', email: '', role: 'utilisateur' };
 

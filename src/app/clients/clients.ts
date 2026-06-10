@@ -24,7 +24,7 @@ export class ClientsComponent implements OnInit {
   successMessage = '';
   searchTerm     = '';
   isDark         = false;
-  apiUrl         = 'environment.apiUrl;';
+  apiUrl = environment.apiUrl;
   clientForm     : FormGroup;
 
   constructor(

@@ -17,7 +17,7 @@ export class SidebarComponent implements OnInit {
   userEmail    = '';
   userInitials = '';
   isAdmin      = false;
-  apiUrl       = 'environment.apiUrl;';
+  apiUrl = environment.apiUrl;
 
   constructor(
     private router : Router,

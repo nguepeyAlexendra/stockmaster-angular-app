@@ -18,7 +18,7 @@ export class FacturesComponent implements OnInit {
   searchTerm    = '';
   factureDetail : any   = null;
   venteDetail   : any   = null;
-  apiUrl        = 'environment.apiUrl;';
+  apiUrl = environment.apiUrl;
 
   constructor(
     private http   : HttpClient,

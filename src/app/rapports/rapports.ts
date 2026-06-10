@@ -14,7 +14,7 @@ import { environment } from '../../environments/environment';
 })
 export class RapportsComponent implements OnInit {
   isLoading    = true;
-  apiUrl       = 'environment.apiUrl;';
+  apiUrl = environment.apiUrl;
 
   statsVentes = {
     total_ventes      : 0,

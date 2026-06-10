@@ -22,7 +22,7 @@ export class EntreesStockComponent implements OnInit {
   errorMessage   = '';
   successMessage = '';
   searchTerm     = '';
-  apiUrl         = 'environment.apiUrl;';
+  apiUrl = environment.apiUrl;
   entreeForm     : FormGroup;
 
   constructor(

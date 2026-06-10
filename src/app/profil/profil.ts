@@ -19,7 +19,7 @@ export class ProfilComponent implements OnInit {
   isDark   = false;
   isAdmin  = false;
   isLoading = true;
-  apiUrl   = 'environment.apiUrl;';
+  apiUrl = environment.apiUrl;
 
   // Infos profil
   profil = {

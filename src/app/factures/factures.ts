@@ -27,7 +27,7 @@ export class FacturesComponent implements OnInit {
   isDark        = false;
   isAdmin       = false;
   isGeneratingPdf = false;
-  apiUrl        = 'environment.apiUrl;';
+  apiUrl = environment.apiUrl;
 
   constructor(
     private http            : HttpClient,

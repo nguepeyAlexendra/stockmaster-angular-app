@@ -32,7 +32,7 @@ export class ProduitsComponent implements OnInit {
   showDeleteModal = false;
   produitToDelete : any          = null;
   isDark          = false;
-  apiUrl          = 'environment.apiUrl;';
+  apiUrl = environment.apiUrl;
 
   constructor(
     private http            : HttpClient,

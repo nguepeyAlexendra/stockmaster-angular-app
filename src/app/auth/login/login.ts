@@ -16,7 +16,7 @@ export class LoginComponent {
   loginForm    : FormGroup;
   isLoading    = false;
   errorMessage = '';
-  apiUrl       = 'environment.apiUrl;';
+  apiUrl = environment.apiUrl;
 
   constructor(
     private fb          : FormBuilder,

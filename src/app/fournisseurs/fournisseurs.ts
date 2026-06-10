@@ -22,7 +22,7 @@ export class FournisseursComponent implements OnInit {
   errorMessage   = '';
   successMessage = '';
   searchTerm     = '';
-  apiUrl         = 'environment.apiUrl;';
+  apiUrl = environment.apiUrl;
   fournisseurForm: FormGroup;
 
   constructor(

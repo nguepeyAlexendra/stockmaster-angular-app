@@ -67,7 +67,7 @@ export class DashboardComponent implements OnInit, AfterViewInit {
 
   private caChart  : Chart | null = null;
   private catChart : Chart | null = null;
-  private apiUrl = 'environment.apiUrl;';
+  private apiUrl = environment.apiUrl;  // Variable directe
 
 
   constructor(
