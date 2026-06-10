@@ -4,7 +4,7 @@ import { Router, RouterLink } from '@angular/router';
 import { CommonModule } from '@angular/common';
 import { HttpClient } from '@angular/common/http';
 import { AuthService } from '../auth.service';
-
+import { environment } from '../../../environments/environment';
 @Component({
   selector   : 'app-login',
   standalone : true,
@@ -16,7 +16,7 @@ export class LoginComponent {
   loginForm    : FormGroup;
   isLoading    = false;
   errorMessage = '';
-  apiUrl       = 'http://127.0.0.1:8000/api';
+  apiUrl       = 'environment.apiUrl;';
 
   constructor(
     private fb          : FormBuilder,

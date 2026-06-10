@@ -4,6 +4,7 @@ import { ReactiveFormsModule, FormBuilder, FormGroup, Validators } from '@angula
 import { Router } from '@angular/router';
 import { HttpClient } from '@angular/common/http';
 import { SidebarComponent } from '../shared/sidebar/sidebar';
+import { environment } from '../../environments/environment';
 
 @Component({
   selector: 'app-fournisseurs',
@@ -21,7 +22,7 @@ export class FournisseursComponent implements OnInit {
   errorMessage   = '';
   successMessage = '';
   searchTerm     = '';
-  apiUrl         = 'http://127.0.0.1:8000/api';
+  apiUrl         = 'environment.apiUrl;';
   fournisseurForm: FormGroup;
 
   constructor(

@@ -3,6 +3,7 @@ import { CommonModule } from '@angular/common';
 import { Router } from '@angular/router';
 import { HttpClient } from '@angular/common/http';
 import { SidebarComponent } from '../shared/sidebar/sidebar';
+import { environment } from '../../environments/environment';
 
 @Component({
   selector: 'app-rapports',
@@ -13,7 +14,7 @@ import { SidebarComponent } from '../shared/sidebar/sidebar';
 })
 export class RapportsComponent implements OnInit {
   isLoading    = true;
-  apiUrl       = 'http://127.0.0.1:8000/api';
+  apiUrl       = 'environment.apiUrl;';
 
   statsVentes = {
     total_ventes      : 0,

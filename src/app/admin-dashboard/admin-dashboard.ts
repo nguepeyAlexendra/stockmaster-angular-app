@@ -1,3 +1,4 @@
+import { environment } from '../../environments/environment';
 import { Component, OnInit, AfterViewInit, ElementRef, ViewChild } from '@angular/core';
 import { CommonModule } from '@angular/common';
 import { Router } from '@angular/router';
@@ -50,7 +51,7 @@ export class AdminDashboard implements OnInit, AfterViewInit {
 
   private caChart  : Chart | null = null;
   private catChart : Chart | null = null;
-  private apiUrl = 'http://127.0.0.1:8000/api';
+  private apiUrl = 'environment.apiUrl;';
 
   constructor(private router: Router, private http: HttpClient) {}
 

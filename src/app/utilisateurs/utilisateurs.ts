@@ -4,6 +4,7 @@ import { FormsModule } from '@angular/forms';
 import { Router } from '@angular/router';
 import { HttpClient } from '@angular/common/http';
 import { SidebarComponent } from '../shared/sidebar/sidebar';
+import { environment } from '../../environments/environment';
 
 @Component({
   selector    : 'app-utilisateurs',
@@ -20,7 +21,7 @@ export class UtilisateursComponent implements OnInit {
   isCreating     = false; 
   successMessage = '';
   errorMessage   = '';
-  apiUrl         = 'http://127.0.0.1:8000/api';
+  apiUrl         = 'environment.apiUrl;';
 
   newUser = { username: '', email: '', role: 'utilisateur' };
 

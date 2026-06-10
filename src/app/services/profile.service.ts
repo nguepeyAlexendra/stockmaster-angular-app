@@ -7,7 +7,7 @@ import { environment } from '../../environments/environment';
   providedIn: 'root'
 })
 export class ProfileService {
-  // environment.apiUrl contient déjà 'http://127.0.0.1:8000/api'
+  // environment.apiUrl contient déjà 'environment.apiUrl;'
   private baseUrl = `${environment.apiUrl}/auth`;
 
   constructor(private http: HttpClient) {}

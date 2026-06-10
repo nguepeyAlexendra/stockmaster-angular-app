@@ -2,7 +2,7 @@ import { Component, Input, OnInit } from '@angular/core';
 import { CommonModule } from '@angular/common';
 import { Router } from '@angular/router';
 import { HttpClient } from '@angular/common/http';
-
+import { environment } from '../../../environments/environment';
 @Component({
   selector  : 'app-sidebar',
   standalone: true,
@@ -17,7 +17,7 @@ export class SidebarComponent implements OnInit {
   userEmail    = '';
   userInitials = '';
   isAdmin      = false;
-  apiUrl       = 'http://127.0.0.1:8000/api';
+  apiUrl       = 'environment.apiUrl;';
 
   constructor(
     private router : Router,

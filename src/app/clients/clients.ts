@@ -5,6 +5,7 @@ import { Router } from '@angular/router';
 import { HttpClient } from '@angular/common/http';
 import { SidebarComponent } from '../shared/sidebar/sidebar';
 import { DarkModeService } from '../shared/dark-mode';
+import { environment } from '../../environments/environment';
 
 @Component({
   selector   : 'app-clients',
@@ -23,7 +24,7 @@ export class ClientsComponent implements OnInit {
   successMessage = '';
   searchTerm     = '';
   isDark         = false;
-  apiUrl         = 'http://127.0.0.1:8000/api';
+  apiUrl         = 'environment.apiUrl;';
   clientForm     : FormGroup;
 
   constructor(

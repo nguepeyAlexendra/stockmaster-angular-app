@@ -5,7 +5,7 @@ import { Router } from '@angular/router';
 import { HttpClient } from '@angular/common/http';
 import { SidebarComponent } from '../shared/sidebar/sidebar';
 import { DarkModeService } from '../shared/dark-mode';
-
+import { environment } from '../../environments/environment';
 @Component({
   selector   : 'app-categories',
   standalone : true,
@@ -22,7 +22,7 @@ export class CategoriesComponent implements OnInit {
   editingId      : number | null = null;
   errorMessage   = '';
   successMessage = '';
-  apiUrl         = 'http://127.0.0.1:8000/api';
+  apiUrl         = 'environment.apiUrl;';
   categorieForm  : FormGroup;
 
   emojis = [

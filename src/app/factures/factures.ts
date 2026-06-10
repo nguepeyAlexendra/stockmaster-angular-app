@@ -6,6 +6,7 @@ import { SidebarComponent } from '../shared/sidebar/sidebar';
 import { DarkModeService } from '../shared/dark-mode';
 import jsPDF from 'jspdf';
 import html2canvas from 'html2canvas';
+import { environment } from '../../environments/environment';
 
 @Component({
   selector   : 'app-factures',
@@ -26,7 +27,7 @@ export class FacturesComponent implements OnInit {
   isDark        = false;
   isAdmin       = false;
   isGeneratingPdf = false;
-  apiUrl        = 'http://127.0.0.1:8000/api';
+  apiUrl        = 'environment.apiUrl;';
 
   constructor(
     private http            : HttpClient,

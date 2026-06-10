@@ -5,6 +5,7 @@ import { HttpClient } from '@angular/common/http';
 import { Chart, registerables } from 'chart.js';
 import { DarkModeService } from '../shared/dark-mode';
 import { SidebarComponent } from '../shared/sidebar/sidebar';
+import { environment } from '../../environments/environment';
 
 Chart.register(...registerables);
 
@@ -66,7 +67,7 @@ export class DashboardComponent implements OnInit, AfterViewInit {
 
   private caChart  : Chart | null = null;
   private catChart : Chart | null = null;
-  private apiUrl = 'http://127.0.0.1:8000/api';
+  private apiUrl = 'environment.apiUrl;';
 
 
   constructor(

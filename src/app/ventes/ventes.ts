@@ -5,6 +5,7 @@ import { Router } from '@angular/router';
 import { HttpClient } from '@angular/common/http';
 import { SidebarComponent } from '../shared/sidebar/sidebar';
 import { DarkModeService } from '../shared/dark-mode';
+import { environment } from '../../environments/environment';
 
 @Component({
   selector  : 'app-ventes',
@@ -25,7 +26,7 @@ export class VentesComponent implements OnInit {
   searchTerm     = '';
   isAdmin        = false;
   isDark         = false;
-  apiUrl         = 'http://127.0.0.1:8000/api';
+  apiUrl         = 'environment.apiUrl;';
   venteForm      : FormGroup;
 
   constructor(
