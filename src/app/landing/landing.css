@@ -28,8 +28,11 @@
 }
 
 .nav-logo { display: flex; align-items: center; gap: 10px; }
+/* Note : Si ton logo est une balise <img>, le display:flex ne sert à rien. 
+   J'ai ajouté object-fit pour que l'image ne soit pas déformée */
 .nav-logo-icon {
   width: 38px; height: 38px; border-radius: 10px;
+  object-fit: cover; /* Important si c'est une vraie image */
   background: #7c5cbf;
   display: flex; align-items: center; justify-content: center;
   color: white; font-size: 18px; font-weight: 700;
@@ -232,15 +235,92 @@
 .footer-right { text-align: right; }
 .footer-right p { color: rgba(255,255,255,0.4); font-size: 11px; line-height: 1.6; }
 
-/* ══ RESPONSIVE ══ */
+
+/* ══════════════════════════════════════ */
+/* ══ RESPONSIVE (NOUVELLE VERSION)  ══ */
+/* ══════════════════════════════════════ */
+
+/* 📱 TABLETTES (Max 1024px) */
+@media (max-width: 1024px) {
+  /* On passe les grilles à 2 colonnes pour éviter qu'elles soient trop écrasées */
+  .feat-grid, .why-grid {
+    grid-template-columns: repeat(2, 1fr);
+  }
+  
+  /* On réduit légèrement le titre principal */
+  .hero-content h1 { font-size: 40px; }
+  
+  /* On réduit les cercles décoratifs pour qu'ils ne débordent pas trop */
+  .hc-1 { width: 300px; height: 300px; }
+  .hc-2 { width: 200px; height: 200px; }
+}
+
+/* 📱 MOBILES (Max 768px) */
 @media (max-width: 768px) {
+  /* HERO */
+  .hero { padding: 0 1.25rem 3rem; min-height: auto; } /* On enlève le min-height forcé */
+  .hero-content { padding: 1.5rem 0; }
   .hero-content h1 { font-size: 32px; }
-  .feat-grid  { grid-template-columns: 1fr; }
-  .why-grid   { grid-template-columns: 1fr; }
-  .hero-stats { flex-direction: column; gap: 1rem; }
-  .stat-divider { width: 60px; height: 1px; }
-  .cta-btns   { flex-direction: column; }
-  .footer     { flex-direction: column; gap: 1rem; text-align: center; }
+  .hero-content p { font-size: 15px; margin-bottom: 2rem; }
+  
+  /* Les boutons prennent toute la largeur et se mettent en colonne */
+  .hero-btns { 
+    flex-direction: column; 
+    width: 100%; 
+    max-width: 300px; 
+    margin: 0 auto 2rem;
+  }
+  .hero-btns button { width: 100%; }
+
+  /* Les stats s'empilent verticalement */
+  .hero-stats { 
+    flex-direction: column; 
+    gap: 1rem; 
+    padding: 1.25rem;
+    width: 100%;
+    max-width: 300px;
+    margin: 0 auto;
+  }
+  .stat-divider { width: 60px; height: 1px; } /* Le séparateur devient horizontal */
+
+  /* NAVBAR */
+  .nav { padding: 1rem 0; }
+  .nav-links { gap: 1rem; }
+  .nav-links span { display: none; } /* On cache les liens textes, on garde le bouton */
+  .nav-logo-text { font-size: 14px; }
+
+  /* SECTIONS */
+  .features, .why, .cta { padding: 3rem 1.25rem; } /* Moins de padding sur les côtés */
+  .section-header { margin-bottom: 2rem; }
+  .section-header h2 { font-size: 24px; }
+  
+  /* Les grilles passent à 1 seule colonne */
+  .feat-grid, .why-grid { 
+    grid-template-columns: 1fr; 
+    gap: 12px; 
+  }
+
+  /* CTA */
+  .cta h2 { font-size: 24px; }
+  .cta-btns { flex-direction: column; align-items: center; }
+  .cta-btns button { width: 100%; max-width: 300px; }
+
+  /* FOOTER */
+  .footer { 
+    flex-direction: column; 
+    gap: 1.5rem; 
+    text-align: center; 
+    padding: 2rem 1.25rem;
+  }
   .footer-right { text-align: center; }
-  .nav-links span { display: none; }
+  
+  /* On cache les cercles trop petits ou gênants sur mobile */
+  .hc-2, .hc-3 { display: none; } 
+}
+
+/* 📱 TRÈS PETITS MOBILES (Max 480px) */
+@media (max-width: 480px) {
+  .hero-content h1 { font-size: 28px; }
+  .hero-badge { font-size: 11px; padding: 6px 14px; }
+  .feat-card, .why-card { padding: 1.25rem; }
 }

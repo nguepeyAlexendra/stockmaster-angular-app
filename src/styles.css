@@ -325,3 +325,50 @@ tbody td { padding: 14px 16px; font-size: 13px; color: var(--text-main); font-fa
 .form-group textarea:focus { border-color: #7c5cbf; box-shadow: 0 0 0 3px rgba(124,92,191,0.1); }
 
 
+/* ── FIX DASHBOARD BURGER ── */
+app-admin-dashboard .topbar-left {
+  display: flex;
+  flex-direction: row;
+  align-items: center;
+  gap: 12px;
+}
+
+app-admin-dashboard .burger-btn {
+  display: flex !important;
+  width: 42px !important;
+  height: 42px !important;
+  min-width: 42px !important;
+  border-radius: 10px !important;
+  background: #2d1f6e !important;
+  border: none !important;
+  color: white !important;
+  font-size: 20px !important;
+  cursor: pointer !important;
+  align-items: center !important;
+  justify-content: center !important;
+  flex-shrink: 0 !important;
+}
+
+app-admin-dashboard .burger-btn:hover {
+  background: #4c35a0 !important;
+}
+
+.burger-btn {
+  display: flex !important;
+  visibility: visible !important;
+  opacity: 1 !important;
+  position: relative !important;
+  z-index: 9999 !important;
+  width: 42px !important;
+  height: 42px !important;
+  min-width: 42px !important;
+  background: red !important;
+  border: none !important;
+  color: white !important;
+  font-size: 24px !important;
+  cursor: pointer !important;
+  align-items: center !important;
+  justify-content: center !important;
+  flex-shrink: 0 !important;
+  border-radius: 10px !important;
+}

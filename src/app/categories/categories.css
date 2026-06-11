@@ -9,6 +9,7 @@
   flex: 1; margin-left: 205px;
   background: #f0eeff;
   display: flex; flex-direction: column; min-height: 100vh;
+  transition: margin-left 0.3s ease; /* Petit effet smooth si le sidebar s'ouvre/ferme */
 }
 
 .topbar {
@@ -204,7 +205,7 @@
 
 .cat-icon { font-size: 32px; flex-shrink: 0; }
 
-.cat-info { flex: 1; }
+.cat-info { flex: 1; min-width: 0; } /* min-width: 0 empêche le texte de déborder */
 .cat-info h3 { font-size: 14px; font-weight: 600; color: #2d1f6e; margin-bottom: 4px; }
 .cat-info p  { font-size: 12px; color: #8b83b6; margin-bottom: 8px; }
 
@@ -270,3 +271,95 @@
 }
 .dark-btn:hover { background: #7c5cbf; }
 .dark-mode .dark-btn { background: #2d1f5e; border-color: #3d2f7e; }
+
+
+/* ══════════════════════════════════════════════════ */
+/* ══ RESPONSIVE (AJOUTS)                        ══ */
+/* ══════════════════════════════════════════════════ */
+
+/* 💻 TABLETTES (Max 1024px) */
+@media (max-width: 1024px) {
+  .cards-grid {
+    grid-template-columns: repeat(auto-fill, minmax(240px, 1fr));
+  }
+}
+
+/* 📱 MOBILES (Max 768px) */
+@media (max-width: 768px) {
+  /* 1. SIDEBAR : On enlève la marge pour que le contenu prenne 100% de la largeur */
+  .main {
+    margin-left: 0; 
+  }
+
+  /* 2. TOPBAR : On permet le retour à la ligne si l'écran est trop petit */
+  .topbar {
+    padding: 0.8rem 1rem;
+    flex-wrap: wrap;
+    gap: 10px;
+  }
+  .topbar-title { font-size: 14px; }
+  .topbar-sub { font-size: 11px; }
+
+  /* 3. CONTENU : On réduit les marges */
+  .content { padding: 1rem; }
+  .form-card, .detail-card { padding: 1.25rem; }
+
+  /* 4. FICHE DÉTAIL : On empile l'icône au-dessus du texte */
+  .detail-body {
+    flex-direction: column;
+    align-items: center;
+    text-align: center;
+    gap: 1rem;
+  }
+  .detail-grid {
+    grid-template-columns: 1fr; /* Les stats passent sur 2 lignes */
+    width: 100%;
+  }
+
+  /* 5. LISTE DES CATÉGORIES : On force 1 colonne */
+  .cards-grid {
+    grid-template-columns: 1fr;
+    gap: 12px;
+  }
+
+  /* 6. CARTES : Les boutons d'action passent en ligne (horizontale) */
+  .cat-card {
+    padding: 1rem;
+    gap: 12px;
+  }
+  .cat-actions {
+    flex-direction: row; /* Changement majeur : les boutons sont côte à côte */
+    gap: 8px;
+  }
+  .act-btn {
+    width: 32px;
+    height: 32px;
+  }
+}
+
+/* 📱 TRÈS PETITS MOBILES (Max 480px) */
+@media (max-width: 480px) {
+  /* Le bouton "Ajouter" et le Dark mode passent à la ligne sous le titre */
+  .topbar-right {
+    width: 100%;
+    justify-content: flex-end;
+  }
+
+  /* Formulaire : les boutons s'empilent pour être faciles à cliquer */
+  .form-actions {
+    flex-direction: column;
+  }
+  .form-actions button {
+    width: 100%;
+  }
+
+  /* On réduit la taille de l'icône dans la fiche détail */
+  .detail-icon {
+    width: 60px;
+    height: 60px;
+    font-size: 28px;
+  }
+  .detail-nom { font-size: 18px; }
+  
+  .cat-icon { font-size: 26px; }
+}

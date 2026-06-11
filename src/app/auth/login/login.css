@@ -52,7 +52,7 @@
   z-index: 1;
 }
 
-/* Côté gauche */
+/* ══ Côté gauche ══ */
 .auth-left {
   flex: 1;
   color: white;
@@ -141,7 +141,7 @@
   font-size: 14px;
 }
 
-/* Formulaire */
+/* ══ Formulaire ══ */
 .auth-form {
   flex: 1;
   background: rgba(255, 255, 255, 0.07);
@@ -261,4 +261,125 @@
 
 .auth-link a:hover {
   text-decoration: underline;
+}
+
+
+/* ══════════════════════════════════════════════════ */
+/* ══ RESPONSIVE (NOUVELLES RÈGLES)              ══ */
+/* ══════════════════════════════════════════════════ */
+
+/* 💻 TABLETTES ET PETITS ÉCRANS (Max 900px) */
+@media (max-width: 900px) {
+  /* On réduit l'espace entre les deux colonnes */
+  .auth-content {
+    gap: 2rem;
+  }
+  
+  /* On réduit le titre principal pour qu'il ne déborde pas */
+  .auth-left h1 {
+    font-size: 38px;
+  }
+  
+  /* On réduit le padding du formulaire */
+  .auth-form {
+    padding: 2rem;
+  }
+}
+
+/* 📱 MOBILES (Max 768px) - Le grand changement */
+@media (max-width: 768px) {
+  /* Le container principal prend tout l'écran et on réduit les marges */
+  .auth-container {
+    padding: 1.5rem;
+    align-items: flex-start; /* On aligne en haut pour pouvoir scroller si besoin */
+    padding-top: 3rem;
+    padding-bottom: 3rem;
+  }
+
+  /* 🔄 ON PASSE EN COLONNE (Empilé) */
+  .auth-content {
+    flex-direction: column; /* Le côté gauche passe AU-DESSUS du formulaire */
+    gap: 2.5rem;
+    max-width: 100%;
+  }
+
+  /* Centrage de la partie gauche */
+  .auth-left {
+    text-align: center;
+    width: 100%;
+  }
+  
+  .logo {
+    justify-content: center; /* Centre le logo */
+    margin-bottom: 1.5rem;
+  }
+
+  .auth-left h1 {
+    font-size: 32px;
+  }
+
+  .divider {
+    margin: 0 auto 1.5rem; /* Centre la petite barre orange */
+  }
+
+  .auth-left p {
+    max-width: 100%; /* Le texte prend toute la largeur */
+    margin: 0 auto 2rem;
+    font-size: 14px;
+  }
+
+  .features {
+    align-items: center; /* Centre les listes de fonctionnalités */
+  }
+
+  /* Le formulaire prend toute la largeur */
+  .auth-form {
+    width: 100%;
+    padding: 2rem 1.5rem;
+  }
+
+  /* On cache les cercles décoratifs qui gênent sur petit écran */
+  .circle-2, .circle-3 {
+    display: none; 
+  }
+  .circle-1 {
+    width: 200px;
+    height: 200px;
+  }
+}
+
+/* 📱 TRÈS PETITS MOBILES (Max 480px) */
+@media (max-width: 480px) {
+  .auth-container {
+    padding: 1rem;
+    padding-top: 2rem;
+  }
+
+  .auth-left h1 {
+    font-size: 28px;
+  }
+
+  .auth-form {
+    padding: 1.5rem 1.25rem;
+    border-radius: 16px; /* Arrondis légèrement moins prononcés */
+  }
+  
+  .auth-form h2 {
+    font-size: 20px;
+  }
+
+  .form-group input {
+    padding: 10px 14px; /* Inputs un peu plus compacts */
+    font-size: 13px;
+  }
+
+  .btn-submit {
+    padding: 12px;
+    font-size: 14px;
+  }
+  
+  .feature-item span {
+    font-size: 13px;
+    text-align: left; /* On remet le texte à gauche pour la lisibilité */
+  }
 }

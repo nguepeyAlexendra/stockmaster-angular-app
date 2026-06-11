@@ -3,20 +3,23 @@ import { CommonModule } from '@angular/common';
 import { Router } from '@angular/router';
 import { HttpClient } from '@angular/common/http';
 import { environment } from '../../../environments/environment';
+
 @Component({
   selector  : 'app-sidebar',
   standalone: true,
   imports   : [CommonModule],
   templateUrl: './sidebar.html',
-  styleUrls : ['./sidebar.css']
+  styleUrls  : ['./sidebar.css']
 })
 export class SidebarComponent implements OnInit {
   @Input() activePage: string = '';
 
-  userName     = '';
-  userEmail    = '';
-  userInitials = '';
-  isAdmin      = false;
+  userName      = '';
+  userEmail     = '';
+  userInitials  = '';
+  isAdmin       = false;
+  nombreAlertes = 0;
+  alertesStock  : any[] = [];
   apiUrl = environment.apiUrl;
 
   constructor(
@@ -27,6 +30,7 @@ export class SidebarComponent implements OnInit {
   ngOnInit() {
     this.isAdmin = localStorage.getItem('user_role') === 'admin';
     this.loadUserInfo();
+    this.loadAlertesStock(); // Charger les alertes
   }
 
   loadUserInfo(): void {
@@ -52,13 +56,34 @@ export class SidebarComponent implements OnInit {
     });
   }
 
+  // ✅ Charger les alertes stock
+  loadAlertesStock(): void {
+    this.http.get<any>(`${this.apiUrl}/produits/stock_faible/`).subscribe({
+      next: (data) => {
+        const liste = data.results || data;
+        this.alertesStock = liste;
+        this.nombreAlertes = this.alertesStock.length;
+      },
+      error: (err) => {
+        console.error('Erreur chargement alertes:', err);
+        this.nombreAlertes = 0;
+      }
+    });
+  }
+
+  // ✅ Ouvrir la page des alertes (produits)
+  openAlertesStock(): void {
+    this.router.navigate(['/produits']);
+  }
+
   navigateTo(page: string) {
     this.router.navigate([`/${page}`]);
   }
-logout() {
-  localStorage.removeItem('access_token');
-  localStorage.removeItem('refresh_token');
-  localStorage.removeItem('user_role');
-  this.router.navigate(['/auth/login']);
-}
+
+  logout() {
+    localStorage.removeItem('access_token');
+    localStorage.removeItem('refresh_token');
+    localStorage.removeItem('user_role');
+    this.router.navigate(['/auth/login']);
+  }
 }

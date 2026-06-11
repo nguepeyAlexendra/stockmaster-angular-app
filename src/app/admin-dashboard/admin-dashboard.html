@@ -1,86 +1,41 @@
-<div class="app" [class.dark-mode]="isDark">
+<div class="dashboard-container" [class.dark-mode]="isDark">
+
+  <!-- OVERLAY -->
+  <div class="mobile-overlay" *ngIf="sidebarOpen" (click)="closeSidebar()"></div>
 
   <!-- SIDEBAR -->
-  <aside class="sidebar">
-    <div class="sidebar-logo">
-      <img src="assets/logo.png" alt="StockMaster" class="sidebar-logo-img" />
-      <div>
-        <div class="logo-text">StockMaster</div>
-        <div class="logo-sub">Administration</div>
-      </div>
-    </div>
+  <div class="sidebar-wrapper" [class.sidebar-open]="sidebarOpen">
+    <app-sidebar [activePage]="'admin-dashboard'"></app-sidebar>
+  </div>
 
-    <nav class="nav-section">
-      <div class="nav-label">Menu</div>
-      <div class="nav-item active"       (click)="navigateTo('admin-dashboard')"  ><span class="ico">⊞</span> Dashboard      </div>
-      <div class="nav-item"              (click)="navigateTo('produits')"          ><span class="ico">📦</span> Produits       </div>
-      <div class="nav-item"              (click)="navigateTo('categories')"        ><span class="ico">🏷️</span> Catégories     </div>
-      <div class="nav-item"              (click)="navigateTo('ventes')"            ><span class="ico">🛒</span> Ventes         </div>
-      <div class="nav-item"              (click)="navigateTo('factures')"          ><span class="ico">🧾</span> Factures       </div>
-      
-      <div class="nav-item"              (click)="navigateTo('fournisseurs')"      ><span class="ico">🚚</span> Fournisseurs   </div>
-      <div class="nav-item"              (click)="navigateTo('entrees-stock')"     ><span class="ico">📥</span> Entrées stock  </div>
-      <div class="nav-label" style="margin-top:8px;">Administration</div>
-      <div class="nav-item" (click)="navigateTo('utilisateurs')"><span class="ico">👤</span> Utilisateurs</div>
-    </nav>
-
-    <div class="nav-logout" (click)="logout()">
-      <span class="ico">🚪</span> Déconnexion
-    </div>
-
-    <div class="sidebar-footer">
-      <div class="user-info">
-        <div class="avatar">{{ userInitials }}</div>
-        <div>
-          <div class="user-name">{{ userName }}</div>
-          <div class="user-role">Administrateur</div>
-        </div>
-      </div>
-    </div>
-  </aside>
-
-  <!-- MAIN -->
-  <main class="main">
+  <!-- CONTENU PRINCIPAL -->
+  <div class="main-content">
 
     <!-- TOPBAR -->
     <div class="topbar">
       <div class="topbar-left">
-        <div class="topbar-title">Tableau de bord — Admin</div>
-        <div class="topbar-sub">{{ currentDate }}</div>
+        <button class="burger-btn" (click)="toggleSidebar()">
+          {{ sidebarOpen ? '✕' : '☰' }}
+        </button>
+        <div>
+          <h2 class="page-title">Tableau de bord — Admin</h2>
+          <p class="page-sub">{{ currentDate }}</p>
+        </div>
       </div>
-      <div class="topbar-right">
-
+      <div class="topbar-actions">
         <div class="search-bar">
           <span>🔍</span>
           <input type="text" placeholder="Rechercher une vente..." (input)="onSearch($event)" />
         </div>
-
-        <div class="stock-bell">
-          🔔
-          <div class="stock-bell-dot" *ngIf="nombreAlertes > 0">{{ nombreAlertes }}</div>
-          <div class="stock-tooltip">
-            <div class="tooltip-title">⚠️ Alertes stock faible</div>
-            <div *ngIf="alertesStock.length === 0" style="color:rgba(255,255,255,0.6); font-size:11px;">
-              Tous les stocks sont bons !
-            </div>
-            <div class="tooltip-item" *ngFor="let a of alertesStock">
-              <span>{{ a.nom }}</span>
-              <span class="tooltip-badge">{{ a.quantite_stock }} restants</span>
-            </div>
-          </div>
-        </div>
-
-        <div class="dark-btn" (click)="toggleDark()">
+        <button class="dark-mode-btn" (click)="toggleDark()">
           {{ isDark ? '☀️' : '🌙' }}
-        </div>
-
+        </button>
       </div>
     </div>
 
-    <!-- CONTENT -->
-    <div class="content">
+    <!-- CONTENU -->
+    <div class="content-area">
 
-      <!-- LOADING -->
       <div class="loading-wrap" *ngIf="isLoading">
         <div class="spinner"></div>
         <p>Chargement du tableau de bord...</p>
@@ -139,8 +94,6 @@
             <div class="card-title">👤 Gestion des utilisateurs</div>
             <div class="card-action" (click)="showCreateUser = false">✕ Fermer</div>
           </div>
-
-          <!-- Formulaire création -->
           <div class="create-user-form">
             <div class="form-row">
               <div class="form-group">
@@ -165,43 +118,41 @@
             <div class="success-msg" *ngIf="createUserSuccess">✅ {{ createUserSuccess }}</div>
             <div class="error-msg"   *ngIf="createUserError">⚠ {{ createUserError }}</div>
           </div>
-
-          <!-- Liste utilisateurs -->
-          <table class="users-table">
-            <thead>
-              <tr>
-                <th>Utilisateur</th>
-                <th>Email</th>
-                <th>Rôle</th>
-                <th>Action</th>
-              </tr>
-            </thead>
-            <tbody>
-              <tr *ngFor="let u of utilisateurs">
-                <td>
-                  <div class="u-info">
-                    <div class="u-avatar">{{ u.username.substring(0,2).toUpperCase() }}</div>
-                    <span>{{ u.username }}</span>
-                  </div>
-                </td>
-                <td>{{ u.email }}</td>
-                <td>
-                  <span class="role-badge" [ngClass]="u.is_admin ? 'role-admin' : 'role-user'">
-                    {{ u.is_admin ? 'Admin' : 'Utilisateur' }}
-                  </span>
-                </td>
-                <td>
-                  <button class="btn-del-user" (click)="supprimerUtilisateur(u.id, u.username)">🗑</button>
-                </td>
-              </tr>
-            </tbody>
-          </table>
+          <div class="users-table-container">
+            <table class="users-table">
+              <thead>
+                <tr>
+                  <th>Utilisateur</th>
+                  <th>Email</th>
+                  <th>Rôle</th>
+                  <th>Action</th>
+                </tr>
+              </thead>
+              <tbody>
+                <tr *ngFor="let u of utilisateurs">
+                  <td>
+                    <div class="u-info">
+                      <div class="u-avatar">{{ u.username.substring(0,2).toUpperCase() }}</div>
+                      <span>{{ u.username }}</span>
+                    </div>
+                  </td>
+                  <td>{{ u.email }}</td>
+                  <td>
+                    <span class="role-badge" [ngClass]="u.is_admin ? 'role-admin' : 'role-user'">
+                      {{ u.is_admin ? 'Admin' : 'Utilisateur' }}
+                    </span>
+                  </td>
+                  <td>
+                    <button class="btn-del-user" (click)="supprimerUtilisateur(u.id, u.username)">🗑</button>
+                  </td>
+                </tr>
+              </tbody>
+            </table>
+          </div>
         </div>
 
         <!-- DERNIÈRES VENTES + ALERTES STOCK -->
         <div class="mid-grid">
-
-          <!-- Dernières ventes -->
           <div class="card">
             <div class="card-header">
               <div class="card-title">🛒 Dernières ventes — tous vendeurs</div>
@@ -225,7 +176,6 @@
             </div>
           </div>
 
-          <!-- Alertes stock faible -->
           <div class="card">
             <div class="card-header">
               <div class="card-title">⚠️ Alertes stock faible</div>
@@ -248,7 +198,6 @@
               </div>
             </div>
           </div>
-
         </div>
 
         <!-- GRAPHIQUES -->
@@ -273,5 +222,5 @@
 
       </div>
     </div>
-  </main>
+  </div>
 </div>
