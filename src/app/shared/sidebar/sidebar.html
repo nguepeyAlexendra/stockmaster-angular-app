@@ -1,97 +1,108 @@
-<aside class="sidebar">
-  <div class="sidebar-logo">
-    <img src="assets/logo.png" alt="StockMaster" class="sidebar-logo-img" />
-    <div>
-      <div class="logo-text">StockMaster</div>
-      <div class="logo-sub">{{ isAdmin ? 'Administration' : 'Gestion stocks' }}</div>
-    </div>
-  </div>
-
-  <nav class="nav-section">
-    <div class="nav-label">Menu</div>
-
-    <!-- MENU ADMIN -->
-    <ng-container *ngIf="isAdmin">
-      <div class="nav-item" [class.active]="activePage === 'admin-dashboard'" (click)="navigateTo('admin-dashboard')">
-        <span class="ico">⊞</span><span>Dashboard</span>
-      </div>
-      <div class="nav-item" [class.active]="activePage === 'produits'" (click)="navigateTo('produits')">
-        <span class="ico">📦</span><span>Produits</span>
-      </div>
-      <div class="nav-item" [class.active]="activePage === 'categories'" (click)="navigateTo('categories')">
-        <span class="ico">🏷️</span><span>Catégories</span>
-      </div>
-      <div class="nav-item" [class.active]="activePage === 'fournisseurs'" (click)="navigateTo('fournisseurs')">
-        <span class="ico">🚚</span><span>Fournisseurs</span>
-      </div>
-      <div class="nav-item" [class.active]="activePage === 'entrees-stock'" (click)="navigateTo('entrees-stock')">
-        <span class="ico">📥</span><span>Entrées stock</span>
-      </div>
-      <div class="nav-item" [class.active]="activePage === 'ventes'" (click)="navigateTo('ventes')">
-        <span class="ico">🛒</span><span>Ventes</span>
-      </div>
-      <div class="nav-item" [class.active]="activePage === 'factures'" (click)="navigateTo('factures')">
-        <span class="ico">🧾</span><span>Factures</span>
-      </div>
-      <div class="nav-label" style="margin-top:8px;">Administration</div>
-      <div class="nav-item" [class.active]="activePage === 'utilisateurs'" (click)="navigateTo('utilisateurs')">
-        <span class="ico">👥</span><span>Utilisateurs</span>
-      </div>
-    </ng-container>
-
-    <!-- MENU UTILISATEUR -->
-    <ng-container *ngIf="!isAdmin">
-      <div class="nav-item" [class.active]="activePage === 'dashboard'" (click)="navigateTo('dashboard')">
-        <span class="ico">⊞</span><span>Dashboard</span>
-      </div>
-      <div class="nav-item" [class.active]="activePage === 'ventes'" (click)="navigateTo('ventes')">
-        <span class="ico">🛒</span><span>Ventes</span>
-      </div>
-      <div class="nav-item" [class.active]="activePage === 'factures'" (click)="navigateTo('factures')">
-        <span class="ico">🧾</span><span>Factures</span>
-      </div>
-      <div class="nav-item" [class.active]="activePage === 'clients'" (click)="navigateTo('clients')">
-        <span class="ico">👥</span><span>Clients</span>
-      </div>
-      <div class="nav-item" [class.active]="activePage === 'produits'" (click)="navigateTo('produits')">
-        <span class="ico">📦</span><span>Produits</span>
-      </div>
-      <div class="nav-item" [class.active]="activePage === 'categories'" (click)="navigateTo('categories')">
-        <span class="ico">🏷️</span><span>Catégories</span>
-      </div>
-    </ng-container>
-
-    <div class="nav-label" style="margin-top:8px;">Compte</div>
-    <div class="nav-item" [class.active]="activePage === 'profil'" (click)="navigateTo('profil')">
-      <span class="ico">👤</span><span>Mon Profil</span>
-    </div>
-
-  </nav>
-
-  <!-- ✅ CLOCHE DE NOTIFICATION -->
-  <div class="sidebar-alerts" (click)="openAlertesStock()">
-    <div class="alert-bell">
-      🔔
-      <span class="alert-badge" *ngIf="nombreAlertes > 0">{{ nombreAlertes }}</span>
-    </div>
-    <div class="alert-text">
-      <div class="alert-title">Alertes stock</div>
-      <div class="alert-count" *ngIf="nombreAlertes > 0">{{ nombreAlertes }} produit(s) en stock faible</div>
-      <div class="alert-count" *ngIf="nombreAlertes === 0">Aucune alerte</div>
-    </div>
-  </div>
-
-  <div class="nav-logout" (click)="logout()">
-    <span class="ico">🚪</span> Déconnexion
-  </div>
-
-  <div class="sidebar-footer">
-    <div class="user-info">
-      <div class="avatar">{{ userInitials }}</div>
-      <div>
-        <div class="user-name">{{ userName }}</div>
-        <div class="user-role">{{ isAdmin ? 'Administrateur' : 'Utilisateur' }}</div>
+<div class="app-container">
+  <!-- Sidebar fixe -->
+  <aside class="sidebar">
+    <div class="sidebar-header">
+      <div class="logo-wrapper">
+        <div class="logo-icon">
+          <img src="assets/logo.png" alt="Logo" />
+        </div>
+        <div class="logo-texts">
+          <h3 class="brand-name">StockMaster</h3>
+          <span class="brand-subtitle">Administration</span>
+        </div>
       </div>
     </div>
-  </div>
-</aside>
+
+    <nav class="sidebar-nav">
+      <div class="nav-section-label">MENU</div>
+      
+      <a routerLink="/dashboard" routerLinkActive="active" class="nav-item">
+        <span class="nav-icon">⊞</span>
+        <span>Dashboard</span>
+      </a>
+      
+      <a routerLink="/produits" routerLinkActive="active" class="nav-item">
+        <span class="nav-icon">📦</span>
+        <span>Produits</span>
+      </a>
+      
+      <a routerLink="/categories" routerLinkActive="active" class="nav-item">
+        <span class="nav-icon">🏷️</span>
+        <span>Catégories</span>
+      </a>
+      
+      <a routerLink="/ventes" routerLinkActive="active" class="nav-item">
+        <span class="nav-icon">🛒</span>
+        <span>Ventes</span>
+      </a>
+      
+      <a routerLink="/factures" routerLinkActive="active" class="nav-item">
+        <span class="nav-icon">📄</span>
+        <span>Factures</span>
+      </a>
+      
+      <a routerLink="/fournisseurs" routerLinkActive="active" class="nav-item">
+        <span class="nav-icon">🚚</span>
+        <span>Fournisseurs</span>
+      </a>
+      
+      <a routerLink="/entrees-stock" routerLinkActive="active" class="nav-item">
+        <span class="nav-icon">📥</span>
+        <span>Entrées stock</span>
+      </a>
+      
+      <div class="nav-section-label">ADMINISTRATION</div>
+      
+      <a routerLink="/utilisateurs" routerLinkActive="active" class="nav-item">
+        <span class="nav-icon">👤</span>
+        <span>Utilisateurs</span>
+      </a>
+    </nav>
+
+    <div class="sidebar-footer">
+      <button (click)="logout()" class="logout-btn">
+        <span class="nav-icon">🚪</span>
+        <span>Déconnexion</span>
+      </button>
+      
+      <div class="user-profile">
+        <div class="user-avatar">
+          <span>{{ userInitials }}</span>
+        </div>
+        <div class="user-details">
+          <div class="user-name">{{ userName }}</div>
+          <div class="user-role">Administrateur</div>
+        </div>
+      </div>
+    </div>
+  </aside>
+
+  <!-- Main Content -->
+  <main class="main-content">
+    <header class="top-header">
+      <div class="header-left">
+        <h2 class="page-title">Tableau de bord — Admin</h2>
+        <span class="current-date">{{ currentDate }}</span>
+      </div>
+      
+      <div class="header-right">
+        <div class="search-box">
+          <span class="search-icon">🔍</span>
+          <input type="text" placeholder="Rechercher une vente..." />
+        </div>
+        
+        <button class="icon-btn">
+          <span>🔔</span>
+        </button>
+        
+        <button class="icon-btn">
+          <span>🌙</span>
+        </button>
+      </div>
+    </header>
+
+    <div class="content-body">
+      <router-outlet></router-outlet>
+    </div>
+  </main>
+</div>

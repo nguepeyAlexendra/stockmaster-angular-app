@@ -1,13 +1,13 @@
 import { Component, Input, OnInit } from '@angular/core';
 import { CommonModule } from '@angular/common';
-import { Router } from '@angular/router';
+import { Router, RouterOutlet } from '@angular/router';
 import { HttpClient } from '@angular/common/http';
 import { environment } from '../../../environments/environment';
 
 @Component({
   selector  : 'app-sidebar',
   standalone: true,
-  imports   : [CommonModule],
+  imports: [CommonModule, RouterOutlet],
   templateUrl: './sidebar.html',
   styleUrls  : ['./sidebar.css']
 })
@@ -21,6 +21,7 @@ export class SidebarComponent implements OnInit {
   nombreAlertes = 0;
   alertesStock  : any[] = [];
   apiUrl = environment.apiUrl;
+currentDate: any;
 
   constructor(
     private router : Router,
