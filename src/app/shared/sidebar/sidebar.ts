@@ -30,7 +30,7 @@ export class SidebarComponent implements OnInit {
   ngOnInit() {
     this.isAdmin = localStorage.getItem('user_role') === 'admin';
     this.loadUserInfo();
-    this.loadAlertesStock(); // Charger les alertes
+    this.loadAlertesStock();
   }
 
   loadUserInfo(): void {
@@ -56,7 +56,6 @@ export class SidebarComponent implements OnInit {
     });
   }
 
-  // ✅ Charger les alertes stock
   loadAlertesStock(): void {
     this.http.get<any>(`${this.apiUrl}/produits/stock_faible/`).subscribe({
       next: (data) => {
@@ -71,7 +70,6 @@ export class SidebarComponent implements OnInit {
     });
   }
 
-  // ✅ Ouvrir la page des alertes (produits)
   openAlertesStock(): void {
     this.router.navigate(['/produits']);
   }
