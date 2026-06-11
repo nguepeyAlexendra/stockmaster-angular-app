@@ -1,26 +1,23 @@
 import { Component, Input, OnInit } from '@angular/core';
 import { CommonModule } from '@angular/common';
-import { Router, RouterOutlet } from '@angular/router';
+import { Router } from '@angular/router';
 import { HttpClient } from '@angular/common/http';
-import { environment } from '../../../environments/environment';
 
 @Component({
   selector  : 'app-sidebar',
   standalone: true,
-  imports: [CommonModule, RouterOutlet],
+  imports   : [CommonModule],
   templateUrl: './sidebar.html',
-  styleUrls  : ['./sidebar.css']
+  styleUrls : ['./sidebar.css']
 })
 export class SidebarComponent implements OnInit {
   @Input() activePage: string = '';
 
-  userName      = '';
-  userEmail     = '';
-  userInitials  = '';
-  isAdmin       = false;
-  nombreAlertes = 0;
-  alertesStock  : any[] = [];
-  apiUrl = environment.apiUrl;
+  userName     = '';
+  userEmail    = '';
+  userInitials = '';
+  isAdmin      = false;
+  apiUrl       = 'http://127.0.0.1:8000/api';
 
   constructor(
     private router : Router,
@@ -30,7 +27,6 @@ export class SidebarComponent implements OnInit {
   ngOnInit() {
     this.isAdmin = localStorage.getItem('user_role') === 'admin';
     this.loadUserInfo();
-    this.loadAlertesStock();
   }
 
   loadUserInfo(): void {
@@ -56,32 +52,13 @@ export class SidebarComponent implements OnInit {
     });
   }
 
-  loadAlertesStock(): void {
-    this.http.get<any>(`${this.apiUrl}/produits/stock_faible/`).subscribe({
-      next: (data) => {
-        const liste = data.results || data;
-        this.alertesStock = liste;
-        this.nombreAlertes = this.alertesStock.length;
-      },
-      error: (err) => {
-        console.error('Erreur chargement alertes:', err);
-        this.nombreAlertes = 0;
-      }
-    });
-  }
-
-  openAlertesStock(): void {
-    this.router.navigate(['/produits']);
-  }
-
   navigateTo(page: string) {
     this.router.navigate([`/${page}`]);
   }
-
-  logout() {
-    localStorage.removeItem('access_token');
-    localStorage.removeItem('refresh_token');
-    localStorage.removeItem('user_role');
-    this.router.navigate(['/auth/login']);
-  }
+logout() {
+  localStorage.removeItem('access_token');
+  localStorage.removeItem('refresh_token');
+  localStorage.removeItem('user_role');
+  this.router.navigate(['/auth/login']);
+}
 }
