@@ -21,7 +21,6 @@ export class SidebarComponent implements OnInit {
   nombreAlertes = 0;
   alertesStock  : any[] = [];
   apiUrl = environment.apiUrl;
-currentDate: any;
 
   constructor(
     private router : Router,
