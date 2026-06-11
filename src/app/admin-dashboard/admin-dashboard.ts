@@ -1,4 +1,3 @@
-import { environment } from '../../environments/environment';
 import { Component, OnInit, AfterViewInit, ElementRef, ViewChild } from '@angular/core';
 import { CommonModule } from '@angular/common';
 import { Router } from '@angular/router';
@@ -16,9 +15,6 @@ Chart.register(...registerables);
   styleUrls   : ['./admin-dashboard.css']
 })
 export class AdminDashboard implements OnInit, AfterViewInit {
-toggleSidebar() {
-throw new Error('Method not implemented.');
-}
 
   @ViewChild('caChart')  caChartRef!  : ElementRef;
   @ViewChild('catChart') catChartRef! : ElementRef;
@@ -31,7 +27,6 @@ throw new Error('Method not implemented.');
   isLoading    = true;
   nombreAlertes = 0;
   searchTerm   = '';
-  sidebarOpen = false;
 
   // Gestion utilisateurs
   showCreateUser   = false;
@@ -55,7 +50,7 @@ throw new Error('Method not implemented.');
 
   private caChart  : Chart | null = null;
   private catChart : Chart | null = null;
-  private apiUrl = environment.apiUrl;;
+  private apiUrl = 'http://127.0.0.1:8000/api';
 
   constructor(private router: Router, private http: HttpClient) {}
 
@@ -69,7 +64,7 @@ throw new Error('Method not implemented.');
     this.loadCategories();
     this.loadUtilisateurs();
   }
-  
+
   ngAfterViewInit(): void {}
 
   setDate(): void {
@@ -313,6 +308,4 @@ throw new Error('Method not implemented.');
   localStorage.removeItem('user_role');
   this.router.navigate(['/auth/login']);
 }
-
-
 }
