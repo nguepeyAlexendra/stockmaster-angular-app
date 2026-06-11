@@ -4,7 +4,7 @@ import { Router } from '@angular/router';
 import { HttpClient } from '@angular/common/http';
 import { FormsModule } from '@angular/forms';
 import { Chart, registerables } from 'chart.js';
-
+import { environment } from '../../environments/environment';
 Chart.register(...registerables);
 
 @Component({
@@ -50,7 +50,7 @@ export class AdminDashboard implements OnInit, AfterViewInit {
 
   private caChart  : Chart | null = null;
   private catChart : Chart | null = null;
-  private apiUrl = 'http://127.0.0.1:8000/api';
+  private apiUrl = environment.apiUrl;
 
   constructor(private router: Router, private http: HttpClient) {}
 
