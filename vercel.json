@@ -1,15 +1,6 @@
 {
-  "version": 2,
-  "builds": [
-    {
-      "src": "package.json",
-      "use": "@vercel/static-build",
-      "config": {
-        "buildCommand": "npm run build -- --configuration=production",
-        "distDir": "dist/stockmaster-frontend/browser"
-      }
-    }
-  ],
+  "buildCommand": "npm run build -- --configuration=production",
+  "outputDirectory": "dist/stockmaster-frontend/browser",
   "routes": [
     {
       "src": "/(.*)",
