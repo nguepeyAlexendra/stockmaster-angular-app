@@ -16,7 +16,7 @@ export class LoginComponent {
   loginForm    : FormGroup;
   isLoading    = false;
   errorMessage = '';
-  apiUrl = environment.apiUrl;
+  apiUrl = 'https://mon-backend-django.onrender.com/api';
 
   constructor(
     private fb          : FormBuilder,
